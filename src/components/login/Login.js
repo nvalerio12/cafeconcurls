@@ -3,10 +3,10 @@ import React, { Component } from "react";
 class Login extends Component {
   state = {
     formdata: {
-      name: "",
-      lastname: "",
-      password: "",
-      email: "",
+      name: "nelson",
+      lastname: "valerio",
+      password: "nvalerio12",
+      email: "nvalerio@gmail.com",
     },
     register: false,
     loading: false,
@@ -20,6 +20,12 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({loading: true})
+    if(this.state.register){
+        console.log(this.state.formdata, 'register');
+    } else {
+        console.log(this.state.formdata, 'login');
+    }
 
     console.log(this.state.formdata);
   }
