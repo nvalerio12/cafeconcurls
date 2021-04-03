@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import { registerUser } from "../../store/actions"
 
 class Login extends Component {
   state = {
     formdata: {
-      name: "nelson",
-      lastname: "valerio",
-      password: "nvalerio12",
-      email: "nvalerio@gmail.com",
+      name: "",
+      lastname: "",
+      password: "",
+      email: "",
     },
     register: false,
     loading: false,
