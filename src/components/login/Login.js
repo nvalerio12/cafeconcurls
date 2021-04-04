@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { registerUser } from "../../store/actions"
+import {connect } from "react-redux"
 
 class Login extends Component {
   state = {
@@ -23,7 +24,7 @@ class Login extends Component {
     e.preventDefault();
     this.setState({loading: true})
     if(this.state.register){
-        console.log(this.state.formdata, 'register');
+      this.props.dispatch(registerUser(this.state.formdata, 'register'));
     } else {
         console.log(this.state.formdata, 'login');
     }
@@ -111,4 +112,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Login);

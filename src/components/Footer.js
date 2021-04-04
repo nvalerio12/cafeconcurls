@@ -8,14 +8,14 @@ function Footer() {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md">
-              CafeConCurls
+              Made By Nelson Valerio
               <small className="d-block mb-3 text-muted">© 2021</small>
             </div>
             <div className="col-6 col-md">
               <h5>Navigate</h5>
               <ul className="list-unstyled text-small">
                 <li>
-                  <Link className="text-muted" to="#">
+                  <Link className="text-muted" to="/">
                     Home
                   </Link>
                 </li>
