@@ -13,3 +13,6 @@ const config = {
 }
 
 const fBaseApp = firebase.initializeApp(config);
+export const DB = fBaseApp.firestore();
+export const {Timestamp} = fBaseApp.firestore;
+export const userCollection = DB.collection('users');

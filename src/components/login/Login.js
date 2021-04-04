@@ -24,12 +24,18 @@ class Login extends Component {
     e.preventDefault();
     this.setState({loading: true})
     if(this.state.register){
-      this.props.dispatch(registerUser(this.state.formdata, 'register'));
+      this.props.dispatch(registerUser(this.state.formdata)).then(
+        ({payload}) => this.handleRedirection(payload)
+      )
     } else {
         console.log(this.state.formdata, 'login');
     }
 
     console.log(this.state.formdata);
+  }
+
+  handleRedirection = result => {
+
   }
 
   handleInputs = (e) => {
