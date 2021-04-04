@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { registerUser } from "../../store/actions"
-import {connect } from "react-redux"
+import { registerUser, loginUser } from "../../store/actions"
+import { connect } from "react-redux"
+import { toast } from 'react-toastify';
+
 
 class Login extends Component {
   state = {
@@ -28,14 +30,23 @@ class Login extends Component {
         ({payload}) => this.handleRedirection(payload)
       )
     } else {
-        console.log(this.state.formdata, 'login');
+      this.props.dispatch(loginUser(this.state.formdata)).then(
+        ({payload}) => this.handleRedirection(payload)
+      )
     }
 
     console.log(this.state.formdata);
   }
 
   handleRedirection = result => {
-
+    if(result.error) {
+      this.setState({loading: false})
+      toast.error(result.error,{
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
+    } else {
+      return this.props.history.push('dashboard')
+    }
   }
 
   handleInputs = (e) => {
