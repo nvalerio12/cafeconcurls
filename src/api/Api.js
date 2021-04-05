@@ -43,8 +43,8 @@ export const autoSignIn = () => (
     new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged( user => {
             if (user){
-                usersCollection.doc(user.uid).get().then( snapshot => {
-                    resolve({ isAuth: true, user:  snapshot.data() })
+                userCollection.doc(user.uid).get().then( snapshot => {
+                    resolve({ isAuth: true, user: snapshot.data() })
                 })   
             } else {
                 resolve({ isAuth: false, user: null })

@@ -16,10 +16,9 @@ class Routes extends Component {
     componentDidMount() {
         this.props.dispatch(autoSignIn());
     }
-
-    render() {
-        return (
-            <BrowserRouter>
+    app = auth=> (
+        <> 
+                    <BrowserRouter>
                 <Header/>
                     <Switch>
                         <Route path="/login" component={Login}/>
@@ -29,7 +28,11 @@ class Routes extends Component {
                 <Footer/>
                 <Toasts />
             </BrowserRouter>
-        )
+        </>
+    )
+    render() {
+        const {auth} = this.props;
+        return auth.checkingAuth ? this.app(auth) : '...loading';
     }
 }
 const mapStateToProps = state => ({ auth: state.auth })
