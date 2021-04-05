@@ -1,6 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
-function Header() {
+import { Link } from "react-router-dom";
+
+const Header = (props) => {
+  const { isAuth } = props.auth;
   return (
     <div>
       <header>
@@ -15,14 +17,25 @@ function Header() {
             <Link className="mt-4" to="/contact">
               Contact
             </Link>
-            <Link className="mt-4" to="/login">
-              Login
-            </Link>
+            {isAuth ? (
+              <>
+                <Link className="mt-4 header_btn" to="/dashboard">
+                  Dashboard
+                </Link>
+                <div className="mt-4 header_btn" onClick={props.logout}>
+                  Logout
+                </div>
+              </>
+            ) : (
+              <Link className="mt-4" to="/Login">
+                Login
+              </Link>
+            )}
           </div>
         </nav>
       </header>
     </div>
   );
-}
+};
 
 export default Header;

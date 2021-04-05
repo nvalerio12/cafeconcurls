@@ -1,5 +1,6 @@
 import { 
-    AUTH_USER
+    AUTH_USER,
+    LOGOUT_USER
 } from '../types';
 
 import * as api from '../../api/Api';
@@ -17,4 +18,9 @@ export const loginUser = (userData) => ({
 export const autoSignIn = () => ({
     type: AUTH_USER,
     payload: api.autoSignIn()
+})
+
+export const logoutUser = () => ({
+    type: LOGOUT_USER,
+    payload: api.logoutUser()
 })

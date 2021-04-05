@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Toasts from './utils/Toasts'
 import { connect } from 'react-redux'
-import { autoSignIn } from './store/actions'
+import { autoSignIn, logoutUser } from './store/actions'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -16,10 +16,16 @@ class Routes extends Component {
     componentDidMount() {
         this.props.dispatch(autoSignIn());
     }
+
+    handleLogout = () => this.props.dispatch(logoutUser());
+
     app = auth=> (
         <> 
-                    <BrowserRouter>
-                <Header/>
+            <BrowserRouter>
+                <Header 
+                    auth={auth}
+                    logout={this.handleLogout}
+                />
                     <Switch>
                         <Route path="/login" component={Login}/>
                         <Route path="/contact" component={Contact}/>

@@ -1,5 +1,6 @@
 import { 
-    AUTH_USER
+    AUTH_USER,
+    LOGOUT_USER
 } from '../types';
 
 const INITIAL_STATE = {
@@ -11,8 +12,9 @@ const INITIAL_STATE = {
 export default function (state=INITIAL_STATE, action){
     switch(action.type){
         case AUTH_USER:
-            return {...action.payload,checkingAuth:true}
-
+            return {...action.payload, checkingAuth: true }
+        case LOGOUT_USER:
+            return {...state, user: null, isAuth: false}
         default:
             return state;
     }
