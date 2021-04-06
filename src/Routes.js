@@ -11,9 +11,9 @@ import Footer from './components/Footer'
 import Home from './components/home/Home'
 import Login from './components/login/Login'
 import Contact from './components/contact/Contact'
-import Dashboard from './components/dashboard /Dashboard'
-import Profile from './components/dashboard /profile/Profile'
-import Review from './components/dashboard /review/Review'
+import Dashboard from './components/dashboard/Dashboard'
+import Profile from './components/dashboard/profile/Profile'
+import Review from './components/dashboard/review/Reviews'
 
 
 
