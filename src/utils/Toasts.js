@@ -4,9 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Toasts() {
     return (
-        <div>
             <ToastContainer />
-        </div>
     )
 }
 

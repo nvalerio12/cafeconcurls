@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom"
 
-function Footer() {
+function Footer(props) {
   return (
     <div>
       <footer className="pt-4  pt-md-5 border-top">

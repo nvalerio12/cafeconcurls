@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { Switch, BrowserRouter, Route } from 'react-router-dom'
-import Toasts from './utils/Toasts'
-import { connect } from 'react-redux'
-import { autoSignIn, logoutUser } from './store/actions'
-import authHoc from './components/hoc/authHoc'
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import ToastsComponent from './utils/Toasts';
+import { connect } from 'react-redux';
+import { autoSignIn, logoutUser } from './store/actions/index';
+import AuthHoc from './components/hoc/authHoc';
 
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-import Home from './components/home/Home'
-import Login from './components/login/Login'
-import Contact from './components/contact/Contact'
-import Dashboard from './components/dashboard/Dashboard'
-import Profile from './components/dashboard/profile/Profile'
-import Review from './components/dashboard/review/Reviews'
-
+import Home from './components/home/Home';
+import Login from './components/login/Login';
+import Contact from './components/contact/Contact';
+import Dashboard from './components/dashboard/Dashboard';
+import Reviews from './components/dashboard/review/Reviews';
+import Profile from './components/dashboard/profile/Profile';
+import ReviewAddEdit from './components/dashboard/review/add_edits';
+import Review from './components/reviews/index';
+import Messages from './components/dashboard/messages';
 
 
 class Routes extends Component {
@@ -25,31 +27,37 @@ class Routes extends Component {
 
     handleLogout = () => this.props.dispatch(logoutUser());
 
-    app = auth=> (
-        <> 
+    app = auth => (
+        <>
             <BrowserRouter>
                 <Header 
                     auth={auth}
                     logout={this.handleLogout}
                 />
-                    <Switch>
-                        <Route path="/dashboard/profile" component={authHoc(Profile)}/>
-                        <Route path="/dashboard/review" component={authHoc(Review, true)}/>
-                        <Route path="/dashboard" component={Dashboard}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/contact" component={Contact}/>
-                        <Route path='/' component={Home} />
-                    </Switch>
-                <Footer/>
-                <Toasts />
+                <Switch>
+                    <Route path="/dashboard/reviews/edit/:id" component={AuthHoc(ReviewAddEdit,true)} />
+                    <Route path="/dashboard/reviews/add" component={AuthHoc(ReviewAddEdit,true)} />
+                    <Route path="/dashboard/reviews" component={AuthHoc(Reviews,true)} />
+                    <Route path="/dashboard/profile" component={AuthHoc(Profile)} />
+                    <Route path="/dashboard/messages" component={AuthHoc(Messages,true)} />
+                    <Route path="/dashboard" component={AuthHoc(Dashboard)} />
+                    <Route path="/reviews/:id" component={Review} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/contact" component={Contact} />
+                    <Route path="/" component={Home} />
+                </Switch>
+                <Footer />
+                <ToastsComponent />
             </BrowserRouter>
         </>
     )
+
     render() {
         const {auth} = this.props;
         return auth.checkingAuth ? this.app(auth) : '...loading';
     }
 }
+
 const mapStateToProps = state => ({ auth: state.auth })
 
 export default connect(mapStateToProps)(Routes);

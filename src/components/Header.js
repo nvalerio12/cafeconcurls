@@ -8,8 +8,8 @@ const Header = (props) => {
       <header>
         <nav className="site-header sticky-top py-1">
           <div className="container d-flex flex-column flex-md-row justify-content-between">
-            <Link className="logo" to="/" aria-label="Product">
-              CafeCon<span>Curls</span>
+            <Link className="logo" to="/" aria-label="Product" color="teal">
+              CafeConCurls
             </Link>
             <Link className="mt-4" to="/">
               Home
@@ -19,7 +19,7 @@ const Header = (props) => {
             </Link>
             {isAuth ? (
               <>
-                <Link className="mt-4 header_btn" to="/dashboard">
+                <Link className="mt-4 " to="/dashboard">
                   Dashboard
                 </Link>
                 <div className="mt-4 header_btn" onClick={props.logout}>

@@ -1,6 +1,7 @@
-import { 
+import {
     AUTH_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    SEND_CONTACT
 } from '../types';
 
 const INITIAL_STATE = {
@@ -9,14 +10,16 @@ const INITIAL_STATE = {
     checkingAuth: false
 }
 
-export default function (state=INITIAL_STATE, action){
+
+export default function(state=INITIAL_STATE,action){
     switch(action.type){
         case AUTH_USER:
-            return {...action.payload, checkingAuth: true }
+            return {...action.payload, checkingAuth:true}
         case LOGOUT_USER:
-            return {...state, user: null, isAuth: false}
+            return {...state, user:null, isAuth:false}
+        case SEND_CONTACT:
+            return {...state,contact: action.payload }
         default:
             return state;
     }
-
 }

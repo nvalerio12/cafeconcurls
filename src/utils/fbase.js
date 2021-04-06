@@ -15,4 +15,6 @@ const config = {
 const fBaseApp = firebase.initializeApp(config);
 export const DB = fBaseApp.firestore();
 export const {Timestamp} = fBaseApp.firestore;
-export const userCollection = DB.collection('users');
+export const usersCollection = DB.collection('users');
+export const reviewsCollection = DB.collection('reviews');
+export const messagesCollection = DB.collection('messages');
