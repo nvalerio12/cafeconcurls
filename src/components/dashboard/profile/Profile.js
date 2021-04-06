@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DashLayout from "../../../utils/dash_layout";
 import { useForm } from "react-hook-form"
+import LoginModal from '../../../utils/login_modal'
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -10,10 +11,19 @@ const Profile = (props) => {
 
     const {register, handleSubmit, errors } = useForm();
     const [ disable, setDisabled ] = useState();
+    const [ showModal, setShowModal ] = useState({
+        open: false,
+        formdata: ''
+    })
 
     const submitForm = (data) => {
         console.log(data)
     }
+
+    const handleClose = () => setShowModal({
+        open: false, 
+        formdata: ''
+    })
 
 return (
     <DashLayout auth={auth} title="Profile">
@@ -72,6 +82,11 @@ return (
           Update profile
         </button>
       </form>
+      <LoginModal 
+        modalState={showModal}
+        handleClose={handleClose}
+      />
+
     </DashLayout>
   );
 };
